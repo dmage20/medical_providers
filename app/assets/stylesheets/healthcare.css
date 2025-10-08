@@ -1,0 +1,170 @@
+/* Healthcare Design System - Inspired by BCBS/Kaiser */
+
+:root {
+  --healthcare-primary: #0067B1;
+  --healthcare-primary-dark: #005A9C;
+  --healthcare-secondary: #007CC3;
+  --healthcare-accent: #00A3E0;
+  --healthcare-light-bg: #F5F8FA;
+  --healthcare-border: #E1E8ED;
+  --healthcare-text: #333333;
+  --healthcare-text-light: #666666;
+}
+
+/* Body and Typography */
+body {
+  background-color: var(--healthcare-light-bg);
+  color: var(--healthcare-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+main {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  min-height: calc(100vh - 56px);
+}
+
+/* Healthcare Navigation */
+.bg-primary-healthcare {
+  background-color: var(--healthcare-primary) !important;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+}
+
+/* Cards */
+.card {
+  border: 1px solid var(--healthcare-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+  background: white;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 2px solid var(--healthcare-primary);
+  font-weight: 600;
+  color: var(--healthcare-primary);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--healthcare-primary);
+  border-color: var(--healthcare-primary);
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background-color: var(--healthcare-primary-dark);
+  border-color: var(--healthcare-primary-dark);
+}
+
+.btn-secondary {
+  background-color: white;
+  border-color: var(--healthcare-border);
+  color: var(--healthcare-text);
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--healthcare-light-bg);
+  border-color: var(--healthcare-primary);
+  color: var(--healthcare-primary);
+}
+
+/* Forms */
+.form-control {
+  border-radius: 6px;
+  border: 1px solid var(--healthcare-border);
+  padding: 0.625rem 0.875rem;
+}
+
+.form-control:focus {
+  border-color: var(--healthcare-primary);
+  box-shadow: 0 0 0 0.2rem rgba(0, 103, 177, 0.15);
+}
+
+/* Search Section */
+.search-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+/* Doctor Cards */
+.doctor-card {
+  margin-bottom: 1.25rem;
+}
+
+.doctor-info {
+  padding: 1.25rem;
+}
+
+.doctor-info strong {
+  color: var(--healthcare-primary);
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: var(--healthcare-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--healthcare-primary-dark);
+  text-decoration: underline;
+}
+
+/* Utility Classes */
+.text-muted-healthcare {
+  color: var(--healthcare-text-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-section {
+    padding: 1.25rem;
+  }
+
+  main {
+    padding-top: 1rem;
+  }
+}
+
+/* Notice/Alert Styling */
+.alert {
+  border-radius: 6px;
+  border-left: 4px solid var(--healthcare-primary);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--healthcare-text-light);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  color: var(--healthcare-border);
+  margin-bottom: 1rem;
+}

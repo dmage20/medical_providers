@@ -1,0 +1,89 @@
+<% content_for :title, "Providers" %>
+
+<div class="container">
+  <% if notice.present? %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <div class="row mb-4">
+    <div class="col">
+      <h1 class="mb-0">
+        <i class="bi bi-hospital me-2"></i>Find a Provider
+      </h1>
+      <p class="text-muted-healthcare mt-2">Search our network of healthcare providers</p>
+    </div>
+  </div>
+
+  <div class="search-section">
+    <%= form_with(url: providers_path, method: :get, data: { turbo_frame: "providers_list", controller: "search" }) do |form| %>
+      <div class="row g-3">
+        <div class="col-md-8">
+          <div class="input-group">
+            <span class="input-group-text bg-white">
+              <i class="bi bi-search"></i>
+            </span>
+            <%= form.text_field :query,
+                placeholder: "Search by name or NPI...",
+                value: params[:query],
+                class: "form-control",
+                data: { search_target: "input", action: "input->search#submit" } %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex gap-2">
+            <%= form.submit "Search", class: "btn btn-primary flex-grow-1" %>
+            <%= button_tag type: "button", class: "btn btn-secondary", data: { action: "click->search#clear" } do %>
+              <i class="bi bi-x-circle me-1"></i>Clear
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Row -->
+      <div class="row g-3 mt-3">
+        <div class="col-md-4">
+          <label class="form-label small text-muted-healthcare">Provider Type</label>
+          <%= form.select :entity_type,
+              options_for_select([
+                ['All Types', ''],
+                ['Individuals', 'individual'],
+                ['Organizations', 'organization']
+              ], params[:entity_type]),
+              {},
+              class: "form-select",
+              data: { action: "change->search#submit" } %>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label small text-muted-healthcare">Gender</label>
+          <%= form.select :gender,
+              options_for_select([
+                ['All Genders', ''],
+                ['Male', 'M'],
+                ['Female', 'F'],
+                ['Other', 'X']
+              ], params[:gender]),
+              {},
+              class: "form-select",
+              data: { action: "change->search#submit" } %>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label small text-muted-healthcare">Credential</label>
+          <%= form.select :credential,
+              options_for_select([['All Credentials', '']] + @credentials.map { |c| [c, c] }, params[:credential]),
+              {},
+              class: "form-select",
+              data: { action: "change->search#submit" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag "providers_list" do %>
+    <%= render "providers_list" %>
+  <% end %>
+</div>

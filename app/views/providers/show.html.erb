@@ -1,0 +1,62 @@
+<div class="container">
+  <% if notice.present? %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <div class="row mb-3">
+    <div class="col">
+      <%= link_to providers_path, class: "btn btn-link text-decoration-none ps-0" do %>
+        <i class="bi bi-arrow-left me-1"></i>Back to all providers
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="mb-0">
+            <i class="bi bi-person-badge me-2"></i>Provider Profile
+          </h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label class="text-muted-healthcare small">Full Name</label>
+              <p class="h5"><%= @provider.full_name %></p>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="text-muted-healthcare small">NPI</label>
+              <p class="h6">
+                <span class="badge bg-primary fs-6"><%= @provider.npi %></span>
+              </p>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="text-muted-healthcare small">Provider Type</label>
+              <p><%= @provider.entity_type.humanize %></p>
+            </div>
+
+            <% if @provider.primary_taxonomy.present? %>
+              <div class="col-12 mb-3">
+                <label class="text-muted-healthcare small">Primary Specialty</label>
+                <p><%= @provider.primary_taxonomy.display_name %></p>
+              </div>
+            <% end %>
+
+            <% if @provider.primary_location.present? %>
+              <div class="col-12 mb-3">
+                <label class="text-muted-healthcare small">Primary Practice Location</label>
+                <p><%= @provider.primary_location.full_address %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
