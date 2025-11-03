@@ -1,7 +1,7 @@
 class Provider < ApplicationRecord
   # Enums
-  enum entity_type: { individual: 1, organization: 2 }, _prefix: :entity
-  enum gender: { male: "M", female: "F", other: "X" }, _prefix: true, _default: nil
+  enum :entity_type, { individual: 1, organization: 2 }, prefix: :entity
+  enum :gender, { male: "M", female: "F", other: "X" }, prefix: true, default: nil
 
   # Associations
   has_many :addresses, dependent: :destroy

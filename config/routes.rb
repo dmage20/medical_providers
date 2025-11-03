@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  # Authentication routes (Rails 8)
+  resource :session
+  resources :passwords, param: :token
+
+  # Mission Control — Jobs dashboard for monitoring background jobs
+  mount MissionControl::Jobs::Engine, at: "/jobs"
+
+  # GraphQL API
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end

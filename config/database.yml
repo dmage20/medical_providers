@@ -22,6 +22,7 @@ default: &default
 development:
   <<: *default
   database: provider_directory_development
+  migrations_paths: db/migrate
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -50,12 +51,28 @@ development:
   # Defaults to warning.
   #min_messages: notice
 
+queue:
+  <<: *default
+  database: provider_directory_development
+  migrations_paths: db/queue_migrate
+  schema_dump: db/queue_schema.rb
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
   database: provider_directory_test
+  migrations_paths: db/migrate
+  host: <%= ENV.fetch("PGHOST") { "localhost" } %>
+  username: <%= ENV.fetch("PGUSER") { "postgres" } %>
+  password: <%= ENV.fetch("PGPASSWORD") { "postgres" } %>
+
+queue_test:
+  <<: *default
+  database: provider_directory_test
+  migrations_paths: db/queue_migrate
+  schema_dump: db/queue_schema.rb
   host: <%= ENV.fetch("PGHOST") { "localhost" } %>
   username: <%= ENV.fetch("PGUSER") { "postgres" } %>
   password: <%= ENV.fetch("PGPASSWORD") { "postgres" } %>
@@ -83,5 +100,14 @@ test:
 production:
   <<: *default
   database: provider_directory_production
+  migrations_paths: db/migrate
+  username: provider_directory
+  password: <%= ENV["PROVIDER_DIRECTORY_DATABASE_PASSWORD"] %>
+
+queue_production:
+  <<: *default
+  database: provider_directory_production
+  migrations_paths: db/queue_migrate
+  schema_dump: db/queue_schema.rb
   username: provider_directory
   password: <%= ENV["PROVIDER_DIRECTORY_DATABASE_PASSWORD"] %>
