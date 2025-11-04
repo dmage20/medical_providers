@@ -1,7 +1,7 @@
 class Provider < ApplicationRecord
   # Enums
-  enum entity_type: { individual: 1, organization: 2 }, _prefix: :entity
-  enum gender: { male: "M", female: "F", other: "X" }, _prefix: true, _default: nil
+  enum :entity_type, { individual: 1, organization: 2 }, prefix: :entity
+  enum :gender, { male: "M", female: "F", other: "X" }, prefix: true, default: nil
 
   # Associations
   has_many :addresses, dependent: :destroy
@@ -60,7 +60,7 @@ class Provider < ApplicationRecord
   }
 
   scope :in_city, ->(city_name, state_code) {
-    joins(addresses: [:city, :state])
+    joins(addresses: [ :city, :state ])
       .where(addresses: { address_purpose: "LOCATION" })
       .where(cities: { name: city_name })
       .where(states: { code: state_code })
@@ -74,7 +74,7 @@ class Provider < ApplicationRecord
   # Instance methods
   def full_name
     if entity_individual?
-      [name_prefix, first_name, middle_name, last_name, name_suffix, credential]
+      [ name_prefix, first_name, middle_name, last_name, name_suffix, credential ]
         .compact.join(" ")
     else
       organization_name
