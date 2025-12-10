@@ -106,7 +106,6 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
-    fiber-storage (1.0.1)
     fugit (1.12.1)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
@@ -114,9 +113,8 @@ GEM
       activesupport (>= 6.1)
     graphiql-rails (1.10.5)
       railties
-    graphql (2.5.14)
+    graphql (2.5.15)
       base64
-      fiber-storage
       logger
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
@@ -339,7 +337,7 @@ DEPENDENCIES
   capybara
   debug
   graphiql-rails
-  graphql (~> 2.4)
+  graphql (~> 2.5)
   importmap-rails
   jbuilder
   mission_control-jobs
