@@ -17,7 +17,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # GraphQL API framework [https://graphql-ruby.org]
-gem "graphql", "~> 2.4"
+gem "graphql", "~> 2.5"
 # Use Solid Queue for background jobs [https://github.com/rails/solid_queue]
 gem "solid_queue"
 # Mission Control for monitoring background jobs [https://github.com/rails/mission_control-jobs]
